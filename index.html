@@ -67,27 +67,9 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        /* Líneas de conexión institucionales */
         .connector-v { width: 2px; background-color: #CBD5E1; height: 30px; margin: 0 auto; }
         .horizontal-bridge { height: 2px; background-color: #CBD5E1; position: absolute; top: 0; left: 8.33%; right: 8.33%; }
 
-        .btn-institutional {
-            background-color: var(--mintrab-blue);
-            color: white;
-            transition: background 0.3s;
-        }
-
-        .btn-institutional:hover {
-            background-color: #002244;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-reveal { animation: fadeIn 0.6s ease-out forwards; }
-        
-        /* Estilos para el listado de procedimientos y formatos */
         .list-item {
             border-left: 3px solid transparent;
             transition: all 0.2s;
@@ -95,21 +77,53 @@
         .list-item:hover {
             background-color: white;
             border-left-color: var(--mintrab-accent);
-            padding-left: 1rem;
+            padding-left: 0.75rem;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         .item-code {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 800;
             color: var(--mintrab-accent);
             letter-spacing: 0.05em;
+            display: block;
+        }
+
+        .trace-node {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 2px solid var(--mintrab-accent);
+            padding-bottom: 2rem;
+        }
+        .trace-node::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: var(--mintrab-blue);
+            border: 3px solid white;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+        .benefit-card:hover {
+            border-color: var(--mintrab-accent);
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body class="text-slate-700">
 
-    <!-- Barra Superior / Gobierno -->
-    <div class="bg-white border-b border-slate-100 sticky top-0 z-50">
+    <!-- Barra Superior -->
+    <div class="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
         <div class="max-w-[1600px] mx-auto px-6 h-24 flex justify-between items-center">
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-4">
@@ -126,24 +140,21 @@
             <nav class="hidden lg:flex gap-10 text-[11px] font-bold uppercase tracking-widest">
                 <a href="#estructura" class="nav-link">Estructura</a>
                 <a href="#maestro" class="nav-link">Documentación</a>
-                <a href="#portal" class="bg-mintrab-blue text-white px-5 py-3 rounded hover:bg-slate-900 transition shadow-sm">Portal Interno</a>
+                <a href="#normativa" class="nav-link">Normativa</a>
+                <a href="#mejoras" class="nav-link">Mejoras</a>
             </nav>
         </div>
     </div>
 
-    <!-- Hero / Presentación Institucional -->
-    <section class="hero-banner min-h-[50vh] flex items-center text-white">
-        <div class="max-w-7xl mx-auto px-6 py-20 animate-reveal">
+    <!-- Hero -->
+    <section class="hero-banner min-h-[45vh] flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-6 py-16 animate-reveal">
             <div class="max-w-3xl">
-                <span class="inline-block border-l-4 border-mintrab-accent pl-4 text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6">Portal de Gestión DSI</span>
+                <span class="inline-block border-l-4 border-mintrab-accent pl-4 text-white text-[11px] font-bold uppercase tracking-[0.2em] mb-6">Portal de Gestión DSI - Actualización 2026</span>
                 <h2 class="text-5xl md:text-6xl font-black mb-6 uppercase leading-tight">Manual de Normas y <br>Procedimientos</h2>
                 <p class="text-lg text-slate-100 mb-10 font-normal leading-relaxed">
-                    Estandarización de procesos internos para la excelencia operativa y la transparencia administrativa de la Dirección de Sistemas de Información.
+                    Estandarización y trazabilidad técnica para la Dirección de Sistemas de Información del MINTRAB.
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#portal" class="bg-mintrab-accent text-white px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg">Acceder a Documentos</a>
-                    <a href="#estructura" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded font-bold text-xs uppercase tracking-widest hover:bg-white/20 transition-all">Ver Estructura DSI</a>
-                </div>
             </div>
         </div>
     </section>
@@ -178,104 +189,43 @@
                 <div class="relative w-full">
                     <div class="horizontal-bridge"></div>
                     <div class="grid grid-cols-6 gap-4 w-full px-4">
-                        
-                        <!-- 1. Recepción -->
                         <div class="flex flex-col items-center">
                             <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4">
-                                <h4 class="font-bold text-[10px] text-mintrab-blue uppercase">1. Recepción</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div onclick="openModal('Asistente Administrativa', 'Encargada de la recepción administrativa, gestión de ventanilla y control de correspondencia de la Dirección.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-600 cursor-pointer">
-                                Asistente Administrativa
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4"><h4 class="font-bold text-[10px] text-mintrab-blue uppercase">1. Recepción</h4></div>
+                            <div onclick="openModal('Asistente Administrativa', 'Gestión de ventanilla y correspondencia.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-600 cursor-pointer">Asistente Administrativa</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="connector-v !h-6"></div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4"><h4 class="font-bold text-[10px] text-mintrab-blue uppercase">2. Centro de Costos</h4></div>
+                            <div onclick="openModal('Encargado de Centro de Costos', 'Control presupuestario y financiero de TI.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-600 cursor-pointer">Encargado de Centro de Costos</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="connector-v !h-6"></div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4"><h4 class="font-bold text-[10px] text-mintrab-blue uppercase">3. Infraestructura</h4></div>
+                            <div onclick="openModal('Encargado de Infraestructura', 'Servidores y redes.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">Encargado</div>
+                            <div onclick="openModal('Auxiliar de Infraestructura', 'Mantenimiento preventivo.')" class="bg-slate-50 border p-2 rounded w-[80%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">Auxiliar</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="connector-v !h-6"></div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4"><h4 class="font-bold text-[10px] text-mintrab-blue uppercase">4. Soporte Técnico</h4></div>
+                            <div onclick="openModal('Encargado de Soporte Técnico', 'Atención de incidencias.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 cursor-pointer mb-4">Encargado</div>
+                            <div class="flex gap-2 w-full justify-center px-1">
+                                <div onclick="openModal('Técnico de Soporte', 'Resolución de fallas.')" class="bg-slate-50 border p-2 rounded w-1/2 text-center text-[9px] font-bold text-slate-400 cursor-pointer">Técnico</div>
+                                <div onclick="openModal('Mesa de Ayuda', 'Seguimiento de tickets.')" class="bg-sky-50 border border-sky-100 p-2 rounded w-1/2 text-center text-[9px] font-bold text-sky-700 cursor-pointer">Mesa Ayuda</div>
                             </div>
                         </div>
-
-                        <!-- 2. Centro de Costos -->
                         <div class="flex flex-col items-center">
                             <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4">
-                                <h4 class="font-bold text-[10px] text-mintrab-blue uppercase">2. Centro de Costos</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div onclick="openModal('Encargado de Centro de Costos', 'Responsable de la ejecución presupuestaria, control financiero de TI e insumos institucionales.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-600 cursor-pointer">
-                                Encargado de Centro de Costos
-                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4 text-[9px]"><h4 class="font-bold text-mintrab-blue uppercase">5. Desarrollo</h4></div>
+                            <div onclick="openModal('Jefe de Desarrollo', 'Liderazgo técnico.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">Jefe</div>
+                            <div onclick="openModal('Desarrollador Senior', 'Arquitectura compleja.')" class="org-card p-2 rounded w-[85%] text-center text-[9px] font-bold text-slate-600 mb-1 cursor-pointer">Senior</div>
+                            <div onclick="openModal('Desarrollador Junior', 'Codificación modular.')" class="bg-slate-50 border p-2 rounded w-[75%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">Junior</div>
                         </div>
-
-                        <!-- 3. Infraestructura -->
                         <div class="flex flex-col items-center">
                             <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4">
-                                <h4 class="font-bold text-[10px] text-mintrab-blue uppercase">3. Infraestructura</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div onclick="openModal('Encargado de Infraestructura', 'Responsable de la disponibilidad de servidores, redes y centros de datos.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">
-                                Encargado de Infraestructura
-                            </div>
-                            <div class="connector-v !h-3"></div>
-                            <div onclick="openModal('Auxiliar de Infraestructura', 'Apoyo técnico en mantenimiento físico y monitoreo de equipos.')" class="bg-slate-50 border p-2 rounded w-[80%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">
-                                Auxiliar de Infraestructura
-                            </div>
-                        </div>
-
-                        <!-- 4. Soporte Técnico -->
-                        <div class="flex flex-col items-center">
-                            <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4">
-                                <h4 class="font-bold text-[10px] text-mintrab-blue uppercase">4. Soporte Técnico</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div class="flex flex-col w-full items-center">
-                                <div onclick="openModal('Encargado de Soporte Técnico', 'Supervisa la atención de incidencias y el mantenimiento de equipos finales.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 cursor-pointer mb-4">
-                                    Encargado de Soporte Técnico
-                                </div>
-                                <div class="connector-v !h-4"></div>
-                                <div class="flex gap-2 w-full justify-center px-1">
-                                    <div onclick="openModal('Técnico de Soporte', 'Resolución de fallas de hardware y software en terminales de usuario.')" class="bg-slate-50 border p-2 rounded w-1/2 text-center text-[9px] font-bold text-slate-400 cursor-pointer">
-                                        Técnico de Soporte
-                                    </div>
-                                    <div onclick="openModal('Mesa de Ayuda', 'Punto central para el reporte de fallas y seguimiento de tickets de soporte institucional.')" class="bg-sky-50 border border-sky-100 p-2 rounded w-1/2 text-center text-[9px] font-bold text-sky-700 cursor-pointer">
-                                        Mesa de Ayuda
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 5. Desarrollo -->
-                        <div class="flex flex-col items-center">
-                            <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4 text-[9px]">
-                                <h4 class="font-bold text-mintrab-blue uppercase">5. Desarrollo</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div onclick="openModal('Jefe de Desarrollo', 'Liderazgo técnico y arquitectura de software institucional.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">
-                                Jefe de Desarrollo
-                            </div>
-                            <div class="connector-v !h-3"></div>
-                            <div onclick="openModal('Desarrollador Senior', 'Arquitectura compleja y desarrollo de módulos críticos.')" class="org-card p-2 rounded w-[85%] text-center text-[9px] font-bold text-slate-600 mb-1 cursor-pointer">
-                                Desarrollador Senior
-                            </div>
-                            <div class="connector-v !h-2"></div>
-                            <div onclick="openModal('Desarrollador Junior', 'Codificación modular y pruebas de sistemas.')" class="bg-slate-50 border p-2 rounded w-[75%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">
-                                Desarrollador Junior
-                            </div>
-                        </div>
-
-                        <!-- 6. Proyectos -->
-                        <div class="flex flex-col items-center">
-                            <div class="connector-v !h-6"></div>
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4">
-                                <h4 class="font-bold text-[10px] text-mintrab-blue uppercase">6. Proyectos</h4>
-                            </div>
-                            <div class="connector-v !h-4"></div>
-                            <div onclick="openModal('Encargado de Proyectos', 'Gestión de la PMO y control de hitos de los proyectos de TI.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">
-                                Encargado de Proyectos
-                            </div>
-                            <div class="connector-v !h-3"></div>
-                            <div onclick="openModal('Analista de Proyectos', 'Recopilación de requerimientos y casos de uso institucionales.')" class="bg-slate-50 border p-2 rounded w-[80%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">
-                                Analista de Proyectos
-                            </div>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded w-full text-center mb-4"><h4 class="font-bold text-[10px] text-mintrab-blue uppercase">6. Proyectos</h4></div>
+                            <div onclick="openModal('Encargado de Proyectos', 'Gestión de la PMO.')" class="org-card p-3 rounded w-[90%] text-center text-[10px] font-bold text-slate-700 mb-2 cursor-pointer">Encargado</div>
+                            <div onclick="openModal('Analista de Proyectos', 'Recopilación de requerimientos.')" class="bg-slate-50 border p-2 rounded w-[80%] text-center text-[9px] font-bold text-slate-400 cursor-pointer">Analista</div>
                         </div>
                     </div>
                 </div>
@@ -283,285 +233,256 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: CATÁLOGO DE DOCUMENTACIÓN -->
+    <!-- SECCIÓN 2: LISTADO MAESTRO -->
     <section id="maestro" class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-[1600px] mx-auto px-6 text-center">
+            <span class="text-mintrab-accent font-bold text-[11px] uppercase tracking-[0.3em]">Catálogo Institucional</span>
+            <h2 class="text-4xl font-black text-mintrab-blue uppercase mt-2">Listado Maestro de Documentos</h2>
+            <div class="flex justify-center gap-4 mt-8">
+                <button onclick="toggleMaestro('procedimientos')" id="btn-proc" class="bg-mintrab-blue text-white px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg transition-all">Procedimientos (35)</button>
+                <button onclick="toggleMaestro('formatos')" id="btn-form" class="bg-white text-mintrab-blue border border-mintrab-blue px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all">Formatos (21)</button>
+            </div>
+
+            <div id="lista-procedimientos" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-16 text-left">
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-blue-600 uppercase text-[10px] border-b pb-3 mb-4 flex items-center gap-2"><i class="fas fa-code"></i> Desarrollo y Proyectos</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-001</span><p class="text-[9px] font-bold">Gestión de Solicitudes Desarrollo</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-002</span><p class="text-[9px] font-bold">Control de Cambios y Actualización</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-003</span><p class="text-[9px] font-bold">Recopilación y Análisis Requerimientos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-004</span><p class="text-[9px] font-bold">Planificación de Desarrollo</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-005</span><p class="text-[9px] font-bold">Diseño y Desarrollo de Sistemas</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-006</span><p class="text-[9px] font-bold">Control de Calidad y Pruebas QA</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-007</span><p class="text-[9px] font-bold">Puesta en Producción</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-029</span><p class="text-[9px] font-bold">Diseño de Base de Datos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-035</span><p class="text-[9px] font-bold">Gestión de Incidencias Técnicas</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-indigo-600 uppercase text-[10px] border-b pb-3 mb-4 flex items-center gap-2"><i class="fas fa-tools"></i> Soporte Técnico</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-008</span><p class="text-[9px] font-bold">Acondicionamiento Equipos Nuevos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-009</span><p class="text-[9px] font-bold">Dictamen para Adquisición</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-010</span><p class="text-[9px] font-bold">Sustitución de Equipo</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-011</span><p class="text-[9px] font-bold">Emisión Dictamen Baja Equipo</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-012</span><p class="text-[9px] font-bold">Ingreso y Egreso (Reparación)</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-013</span><p class="text-[9px] font-bold">Mantenimiento Preventivo</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-021</span><p class="text-[9px] font-bold">Gestión de Usuarios (Mesa Ayuda)</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-orange-600 uppercase text-[10px] border-b pb-3 mb-4 flex items-center gap-2"><i class="fas fa-server"></i> Infraestructura</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-014</span><p class="text-[9px] font-bold">Administración Direccionamiento IP</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-015</span><p class="text-[9px] font-bold">Gestión Conectividad Red Física</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-016</span><p class="text-[9px] font-bold">Reubicación Infraestructura de Red</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-017</span><p class="text-[9px] font-bold">Copia de Seguridad de Datos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-018</span><p class="text-[9px] font-bold">Alta, Baja y Modificación Usuarios</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-019</span><p class="text-[9px] font-bold">Control Privilegios Navegación</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-020</span><p class="text-[9px] font-bold">Gestión Resguardo Licenciamiento</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-022</span><p class="text-[9px] font-bold">Verificación Copia de Datos</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-emerald-600 uppercase text-[10px] border-b pb-3 mb-4 flex items-center gap-2"><i class="fas fa-calculator"></i> Centro de Costos</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-023</span><p class="text-[9px] font-bold">Requerimiento de Compra</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-024</span><p class="text-[9px] font-bold">Solicitud y Asignación de Cuota</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-025</span><p class="text-[9px] font-bold">Modificaciones Presupuestarias</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-026</span><p class="text-[9px] font-bold">Expedientes para Pagos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-027</span><p class="text-[9px] font-bold">Gestión de Viáticos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-028</span><p class="text-[9px] font-bold">Análisis del Presupuesto DSI</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-rose-600 uppercase text-[10px] border-b pb-3 mb-4 flex items-center gap-2"><i class="fas fa-concierge-bell"></i> Recepción</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-030</span><p class="text-[9px] font-bold">Recepción y Traslado Documentos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-031</span><p class="text-[9px] font-bold">Redacción de Documentos</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-032</span><p class="text-[9px] font-bold">Atención al Usuario</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-033</span><p class="text-[9px] font-bold">Gestión de Reuniones</p></li>
+                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-034</span><p class="text-[9px] font-bold">Archivo de Documentos</p></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="lista-formatos" class="hidden grid md:grid-cols-3 gap-8 mt-16 text-left">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-blue-600 uppercase text-xs border-b pb-3 mb-4">Desarrollo y Proyectos</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-001</span><p class="text-[10px] font-bold">Solicitud de sistema</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-002</span><p class="text-[10px] font-bold">Actualización de sistema</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-003</span><p class="text-[10px] font-bold">Análisis Procesos Requerimientos</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-004</span><p class="text-[10px] font-bold">Ayuda de Memoria</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-005</span><p class="text-[10px] font-bold">Aseguramiento Calidad (QA)</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-010</span><p class="text-[10px] font-bold">Listado de asistencia</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-011</span><p class="text-[10px] font-bold">Prototipo Funcionalidad</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-016</span><p class="text-[10px] font-bold">Viabilidad Integral</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-019</span><p class="text-[10px] font-bold">Asistencia General</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-020</span><p class="text-[10px] font-bold">Diseño Base de Datos</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-021</span><p class="text-[10px] font-bold">Reporte de Errores</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-orange-600 uppercase text-xs border-b pb-3 mb-4">Infraestructura</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-006</span><p class="text-[10px] font-bold">Solicitud Puntos Red</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-007</span><p class="text-[10px] font-bold">Factibilidad Puntos Red</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-008</span><p class="text-[10px] font-bold">Ficha Copia Base de Datos</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-017</span><p class="text-[10px] font-bold">Gestión de Usuarios</p></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                    <h3 class="font-black text-indigo-600 uppercase text-xs border-b pb-3 mb-4">Soporte Técnico</h3>
+                    <ul class="space-y-2">
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-009</span><p class="text-[10px] font-bold">Control Acondicionamiento Equipos</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-012</span><p class="text-[10px] font-bold">Ingreso/Egreso Reparación</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-013</span><p class="text-[10px] font-bold">Recepción Equipos</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-014</span><p class="text-[10px] font-bold">Mantenimiento Preventivo</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-015</span><p class="text-[10px] font-bold">Opinión Técnica</p></li>
+                        <li class="list-item py-1"><span class="item-code">DISI-FO-018</span><p class="text-[10px] font-bold">Dictamen Bienes Informáticos</p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 3: NORMATIVA TÉCNICA -->
+    <section id="normativa" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="text-mintrab-accent font-bold text-[11px] uppercase tracking-[0.4em]">Gestión de Calidad DSI</span>
+                <h2 class="text-4xl font-black text-mintrab-blue uppercase mt-2">Normativa Técnica de Documentación</h2>
+                <div class="w-16 h-1 bg-mintrab-accent mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-10">
+                    <div class="animate-reveal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="h-12 w-12 bg-mintrab-blue text-white rounded-xl flex items-center justify-center shadow-md"><i class="fas fa-file-alt"></i></div>
+                            <h4 class="font-black text-mintrab-blue uppercase text-sm">1. Estandarización en Documentación</h4>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed ml-16">Uniformidad estructural obligatoria. Cada procedimiento debe contener: Objetivo, Alcance, Glosario, Políticas, Descripción de Actividades y Anexos.</p>
+                    </div>
+
+                    <div class="animate-reveal" style="animation-delay: 0.1s">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="h-12 w-12 bg-mintrab-accent text-white rounded-xl flex items-center justify-center shadow-md"><i class="fas fa-draw-polygon"></i></div>
+                            <h4 class="font-black text-mintrab-blue uppercase text-sm">2. Diagramación Institucional</h4>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed ml-16">Uso de la <strong>Estructura Estándar de Diagramación Institucional</strong> para representar flujos de decisión y procesos técnicos administrativos.</p>
+                    </div>
+
+                    <div class="animate-reveal" style="animation-delay: 0.2s">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="h-12 w-12 bg-slate-800 text-white rounded-xl flex items-center justify-center shadow-md"><i class="fas fa-barcode"></i></div>
+                            <h4 class="font-black text-mintrab-blue uppercase text-sm">3. Codificación Sencilla</h4>
+                        </div>
+                        <div class="ml-16 space-y-4">
+                            <p class="text-sm text-slate-500">Identificación única para procedimientos y formatos:</p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <span class="text-[10px] font-black text-mintrab-blue block mb-1 uppercase">PROCEDIMIENTOS</span>
+                                    <code class="text-xs text-red-600 font-bold uppercase">MTPS-DISI-[00X]</code>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                                    <span class="text-[10px] font-black text-mintrab-accent block mb-1 uppercase">FORMATOS</span>
+                                    <code class="text-xs text-red-600 font-bold uppercase">DISI-FO-[00X]</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-10 rounded-[3rem] border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-8">
+                        <i class="fas fa-search-location text-mintrab-accent text-xl"></i>
+                        <h4 class="font-black text-mintrab-blue uppercase text-sm tracking-tight">4. Trazabilidad de Actualización</h4>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="trace-node">
+                            <span class="text-[10px] font-black text-mintrab-accent uppercase block">Paso 01: Propuesta</span>
+                            <p class="text-[11px] text-slate-500">Levantamiento de procesos por área e identificación de mejoras en procedimientos y formatos.</p>
+                        </div>
+                        <div class="trace-node">
+                            <span class="text-[10px] font-black text-mintrab-accent uppercase block">Paso 02: Revisión Normativa</span>
+                            <p class="text-[11px] text-slate-500">Validación técnica por responsables de área y aprobación del Director de Sistemas de Información.</p>
+                        </div>
+                        <div class="trace-node">
+                            <span class="text-[10px] font-black text-mintrab-accent uppercase block">Paso 03: Legalización</span>
+                            <p class="text-[11px] text-slate-500">Traslado a Planificación para la gestión del Acuerdo Administrativo que aprueba legalmente el manual.</p>
+                        </div>
+                        <div class="trace-node !border-transparent">
+                            <span class="text-[10px] font-black text-mintrab-accent uppercase block">Paso 04: Difusión</span>
+                            <p class="text-[11px] text-slate-500 font-medium italic">Publicación y difusión oficial a todas las dependencias del Ministerio para su conocimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: MEJORAS -->
+    <section id="mejoras" class="py-24 bg-slate-50 border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <span class="text-mintrab-accent font-bold text-[11px] uppercase tracking-[0.3em]">Documentación Oficial DSI</span>
-                <h2 class="text-4xl font-black text-mintrab-blue uppercase mt-2">Listado Maestro de Documentos</h2>
+                <span class="text-mintrab-accent font-bold text-[11px] uppercase tracking-[0.3em]">Impacto Institucional</span>
+                <h2 class="text-4xl font-black text-mintrab-blue uppercase mt-2">Mejoras de la Actualización</h2>
                 <div class="w-16 h-1 bg-mintrab-accent mx-auto mt-6"></div>
-                <div class="flex justify-center gap-4 mt-12">
-                    <button onclick="toggleMaestro('procedimientos')" id="btn-proc" class="bg-mintrab-blue text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-md transition-all">Procedimientos</button>
-                    <button onclick="toggleMaestro('formatos')" id="btn-form" class="bg-white text-mintrab-blue border border-mintrab-blue px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all">Formatos</button>
-                </div>
+                <p class="mt-8 text-slate-500 max-w-2xl mx-auto">La implementación de este manual optimiza el funcionamiento interno y fortalece la capacidad de respuesta técnica de la Dirección.</p>
             </div>
 
-            <!-- SUB-SECCIÓN: PROCEDIMIENTOS -->
-            <div id="lista-procedimientos" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Desarrollo y Proyectos -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-blue-600 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-code text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Desarrollo y Proyectos</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-001</span><p class="text-[11px] font-bold">Gestión de Solicitudes para Desarrollo</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-002</span><p class="text-[11px] font-bold">Control de Cambios y Actualización</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-003</span><p class="text-[11px] font-bold">Recopilación y Análisis de Requerimientos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-004</span><p class="text-[11px] font-bold">Planificación de Desarrollo de Sistemas</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-005</span><p class="text-[11px] font-bold">Diseño y Desarrollo de Sistemas</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-006</span><p class="text-[11px] font-bold">Control de Calidad y Pruebas QA</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-007</span><p class="text-[11px] font-bold">Puesta en Producción</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-029</span><p class="text-[11px] font-bold">Diseño de Base de Datos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-035</span><p class="text-[11px] font-bold">Gestión de Incidencias Técnicas</p></li>
-                    </ul>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-users-cog text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Roles y Responsabilidades</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Identificación precisa de actividades para cada puesto, eliminando la duplicidad de funciones y mejorando la rendición de cuentas institucional.</p>
                 </div>
-
-                <!-- Infraestructura -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-orange-500 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-server text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Infraestructura</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-014</span><p class="text-[11px] font-bold">Administración de Direccionamiento IP</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-015</span><p class="text-[11px] font-bold">Gestión de Conectividad de Red Física</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-016</span><p class="text-[11px] font-bold">Implementación y Reubicación de Infra.</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-017</span><p class="text-[11px] font-bold">Copia de Seguridad de Base de Datos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-018</span><p class="text-[11px] font-bold">Alta, Baja y Modificación de Usuarios</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-019</span><p class="text-[11px] font-bold">Control de Privilegios de Navegación</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-020</span><p class="text-[11px] font-bold">Gestión de Resguardo de Licenciamiento</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-022</span><p class="text-[11px] font-bold">Verificación de Copia de Base de Datos</p></li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-tasks text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Control de Solicitudes</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Mejor control y atención oportuna en las solicitudes técnicas y administrativas, asegurando tiempos de respuesta alineados a las metas del Ministerio.</p>
                 </div>
-
-                <!-- Soporte Técnico -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-indigo-600 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-headset text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Soporte Técnico</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-008</span><p class="text-[11px] font-bold">Acondicionamiento de Equipos Nuevos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-009</span><p class="text-[11px] font-bold">Dictamen para Adquisición de Equipo</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-010</span><p class="text-[11px] font-bold">Sustitución de Equipo de Cómputo</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-011</span><p class="text-[11px] font-bold">Emisión de Dictamen para Baja de Equipo</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-012</span><p class="text-[11px] font-bold">Ingreso y Egreso Equipo Reparación</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-013</span><p class="text-[11px] font-bold">Mantenimiento Preventivo de Equipo</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-021</span><p class="text-[11px] font-bold">Gestión de Usuarios</p></li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-check-circle text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Estandarización Total</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Unificación de formatos y flujos operativos bajo un estándar ministerial, lo que facilita la inducción de personal y la continuidad de los servicios.</p>
                 </div>
-
-                <!-- Centro de Costos (NUEVO) -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-emerald-600 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-calculator text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Centro de Costos</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-023</span><p class="text-[11px] font-bold">Requerimiento de Compra</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-024</span><p class="text-[11px] font-bold">Solicitud y Asignación de Cuota</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-025</span><p class="text-[11px] font-bold">Modificaciones Presupuestarias</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-026</span><p class="text-[11px] font-bold">Conformación de Expedientes para Pagos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-027</span><p class="text-[11px] font-bold">Gestión de Viáticos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-028</span><p class="text-[11px] font-bold">Análisis del Presupuesto de la DSI</p></li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-file-invoice text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Respaldo Documental</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Fortalecimiento del respaldo institucional mediante procedimientos que aseguran el control riguroso y la trazabilidad documental de cada solicitud gestionada.</p>
                 </div>
-
-                <!-- Recepción (NUEVO) -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-rose-500 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-concierge-bell text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Recepción</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-030</span><p class="text-[11px] font-bold">Recepción y Traslado de Documentos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-031</span><p class="text-[11px] font-bold">Redacción de Documentos</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-032</span><p class="text-[11px] font-bold">Atención al Usuario</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-033</span><p class="text-[11px] font-bold">Gestión de Reuniones</p></li>
-                        <li class="list-item py-1"><span class="item-code">MTPS-DISI-034</span><p class="text-[11px] font-bold">Archivo de Documentos</p></li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-search text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Transparencia Operativa</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Mayor visibilidad de los procesos para todas las dependencias, promoviendo una cultura de transparencia y eficiencia en la gestión pública.</p>
                 </div>
-            </div>
-
-            <!-- SUB-SECCIÓN: FORMATOS (MANTENIDA) -->
-            <div id="lista-formatos" class="hidden grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Desarrollo y Proyectos -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-blue-600 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-file-invoice text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Desarrollo y Proyectos</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-001</span><p class="text-[11px] font-bold">Solicitud de sistema de información</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-002</span><p class="text-[11px] font-bold">Solicitud de actualización de sistema</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-003</span><p class="text-[11px] font-bold">Análisis de Procesos para Requerimientos</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-005</span><p class="text-[11px] font-bold">Formato aseguramiento de calidad (QA)</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-011</span><p class="text-[11px] font-bold">Formato de Prototipo de Funcionalidad</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-020</span><p class="text-[11px] font-bold">Parámetros Diseño de Base de Datos</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-021</span><p class="text-[11px] font-bold">Reporte de Errores o Incidencias</p></li>
-                    </ul>
-                </div>
-
-                <!-- Infraestructura -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-orange-500 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-network-wired text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Infraestructura</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-006</span><p class="text-[11px] font-bold">Solicitud Puntos de Red Nueva Ubicación</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-007</span><p class="text-[11px] font-bold">Factibilidad Puntos de Red Nueva Ubicación</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-008</span><p class="text-[11px] font-bold">Ficha Copia de Base de Datos</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-017</span><p class="text-[11px] font-bold">Gestión de Usuarios (Red)</p></li>
-                    </ul>
-                </div>
-
-                <!-- Soporte Técnico -->
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                        <div class="bg-indigo-600 h-8 w-8 rounded flex items-center justify-center text-white"><i class="fas fa-tools text-xs"></i></div>
-                        <h3 class="font-black text-mintrab-blue uppercase text-xs">Soporte Técnico</h3>
-                    </div>
-                    <ul class="space-y-3">
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-009</span><p class="text-[11px] font-bold">Control Interno Acondicionamiento Equipos</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-012</span><p class="text-[11px] font-bold">Ingreso y Egreso Equipo Reparación</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-014</span><p class="text-[11px] font-bold">Formulario Mantenimiento Preventivo</p></li>
-                        <li class="list-item py-1"><span class="item-code">DISI-FO-018</span><p class="text-[11px] font-bold">Solicitud Dictamen Técnico Bienes</p></li>
-                    </ul>
+                <div class="benefit-card">
+                    <div class="h-12 w-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6"><i class="fas fa-chart-line text-xl"></i></div>
+                    <h4 class="font-black text-mintrab-blue uppercase text-sm mb-4">Mejora Continua</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Un marco normativo flexible que permite la identificación constante de oportunidades de mejora y la actualización ágil de los flujos de trabajo.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN 3: PORTAL INTERNO -->
-    <section id="portal" class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-[1500px] mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div class="max-w-2xl">
-                    <span class="text-mintrab-accent font-bold text-[11px] uppercase tracking-[0.4em]">Intranet Institucional</span>
-                    <h2 class="text-4xl font-black text-mintrab-blue uppercase mt-2">Portal Interno DSI</h2>
-                    <p class="text-slate-500 mt-4 font-medium italic">Acceso centralizado para el personal operativo y técnico de la dirección.</p>
-                </div>
-                <div class="flex items-center gap-3 bg-mintrab-light-bg px-5 py-3 rounded-full border border-slate-200">
-                    <div class="h-2 w-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sistema en línea</span>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-16 text-center">
+        <p class="text-[10px] text-slate-400 mt-2 font-bold uppercase tracking-widest">Ministerio de Trabajo y Previsión Social | Dirección de Sistemas de Información © 2026</p>
+    </footer>
 
-            <div class="grid lg:grid-cols-4 gap-8">
-                <!-- Recursos por Unidad -->
-                <div class="lg:col-span-3">
-                    <div class="grid md:grid-cols-3 gap-6 mb-12">
-                        <div class="bg-white border border-slate-200 p-8 rounded-2xl hover:border-mintrab-accent transition cursor-pointer group">
-                            <i class="fas fa-folder text-slate-300 text-3xl mb-4 group-hover:text-mintrab-accent transition"></i>
-                            <h4 class="font-bold text-mintrab-blue uppercase text-xs">Unidad de Recepción</h4>
-                            <p class="text-[10px] text-slate-400 mt-1 uppercase">Formatos y Bitácoras</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-8 rounded-2xl hover:border-mintrab-accent transition cursor-pointer group">
-                            <i class="fas fa-folder text-slate-300 text-3xl mb-4 group-hover:text-mintrab-accent transition"></i>
-                            <h4 class="font-bold text-mintrab-blue uppercase text-xs">Centro de Costos</h4>
-                            <p class="text-[10px] text-slate-400 mt-1 uppercase">Presupuesto y Compras</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 p-8 rounded-2xl hover:border-mintrab-accent transition cursor-pointer group">
-                            <i class="fas fa-folder text-slate-300 text-3xl mb-4 group-hover:text-mintrab-accent transition"></i>
-                            <h4 class="font-bold text-mintrab-blue uppercase text-xs">Desarrollo y Proyectos</h4>
-                            <p class="text-[10px] text-slate-400 mt-1 uppercase">Control de Calidad y PMO</p>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-mintrab-blue rounded-3xl p-10 text-white relative overflow-hidden shadow-xl shadow-blue-900/10">
-                            <div class="relative z-10">
-                                <h3 class="text-2xl font-black uppercase mb-4 tracking-tight">Expedientes de Proyectos</h3>
-                                <p class="text-xs text-slate-300 mb-8 font-light">Repositorio oficial de actas de inicio, documentos de diseño y actas de cierre.</p>
-                                <div class="grid gap-3">
-                                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 transition cursor-pointer">
-                                        <i class="fas fa-file-invoice text-mintrab-accent"></i>
-                                        <span class="text-[10px] font-bold uppercase tracking-widest">Documentos de Inicio</span>
-                                    </div>
-                                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 transition cursor-pointer">
-                                        <i class="fas fa-check-circle text-emerald-400"></i>
-                                        <span class="text-[10px] font-bold uppercase tracking-widest">Actas de Cierre</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm">
-                            <h3 class="text-xl font-black text-mintrab-blue uppercase mb-4 tracking-tight">Oficios y Plantillas</h3>
-                            <p class="text-xs text-slate-400 mb-8 font-light">Generación de correspondencia interna bajo el estándar ministerial.</p>
-                            <div class="grid grid-cols-2 gap-4">
-                                <button class="flex flex-col items-center justify-center gap-3 p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-mintrab-accent transition">
-                                    <i class="fas fa-envelope-open-text text-mintrab-blue"></i>
-                                    <span class="text-[9px] font-bold uppercase">Oficio Interno</span>
-                                </button>
-                                <button class="flex flex-col items-center justify-center gap-3 p-5 bg-slate-50 border border-slate-100 rounded-2xl hover:border-mintrab-accent transition">
-                                    <i class="fas fa-file-signature text-mintrab-blue"></i>
-                                    <span class="text-[9px] font-bold uppercase">Solicitud Acceso</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="bg-slate-50 border border-slate-200 p-8 rounded-3xl sticky top-28 shadow-sm">
-                        <h4 class="text-mintrab-blue font-black uppercase text-[11px] mb-6 border-b border-slate-200 pb-4">Centro de Operaciones</h4>
-                        <button class="w-full flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl hover:shadow-md transition mb-4">
-                            <div class="h-10 w-10 bg-mintrab-blue rounded-lg flex items-center justify-center text-white"><i class="fas fa-plus"></i></div>
-                            <div class="text-left">
-                                <p class="text-[10px] font-black uppercase text-mintrab-blue">Nuevo Oficio</p>
-                                <p class="text-[8px] text-slate-400">Iniciar gestión</p>
-                            </div>
-                        </button>
-                        <button class="w-full flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl hover:shadow-md transition">
-                            <div class="h-10 w-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-500"><i class="fas fa-search"></i></div>
-                            <div class="text-left">
-                                <p class="text-[10px] font-black uppercase text-slate-700">Rastreador</p>
-                                <p class="text-[8px] text-slate-400">Consultar estado</p>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal Dinámico Institucional -->
+    <!-- Modal -->
     <div id="modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-[100] flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border-t-[12px] border-mintrab-blue animate-in zoom-in duration-200">
-            <div class="p-10">
-                <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <span class="text-mintrab-accent text-[10px] font-black uppercase tracking-widest">Atribuciones de Puesto</span>
-                        <h2 id="modal-title" class="text-2xl font-black text-mintrab-blue mt-1 uppercase leading-tight">Cargo</h2>
-                    </div>
-                    <button onclick="closeModal()" class="text-slate-300 hover:text-slate-900 transition"><i class="fas fa-times text-xl"></i></button>
-                </div>
-                <div class="bg-slate-50 p-8 rounded-2xl mb-10 border border-slate-100">
-                    <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed italic"></p>
-                </div>
-                <div class="flex gap-4">
-                    <button onclick="closeModal()" class="flex-1 border border-slate-200 text-slate-400 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition">Cerrar</button>
-                    <button class="flex-1 bg-mintrab-blue text-white py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-900 transition">Ver Manual</button>
-                </div>
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border-t-[12px] border-mintrab-blue">
+            <div class="p-10 text-center">
+                <h2 id="modal-title" class="text-2xl font-black text-mintrab-blue mb-4 uppercase">Cargo</h2>
+                <div class="bg-slate-50 p-6 rounded-2xl mb-8"><p id="modal-desc" class="text-slate-600 text-sm leading-relaxed italic"></p></div>
+                <button onclick="closeModal()" class="w-full bg-mintrab-blue text-white py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all hover:bg-slate-900">Cerrar</button>
             </div>
         </div>
     </div>
-
-    <!-- Footer Institucional -->
-    <footer class="bg-white border-t border-slate-100 py-16">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center gap-12 mb-10 opacity-10 grayscale pointer-events-none">
-                <i class="fas fa-fingerprint text-5xl"></i>
-                <i class="fas fa-shield-alt text-5xl"></i>
-                <i class="fas fa-check-double text-5xl"></i>
-            </div>
-            <p class="text-[10px] font-black text-slate-300 uppercase tracking-[0.5em]">Gobierno de la República de Guatemala</p>
-            <p class="text-[9px] text-slate-400 mt-2 font-bold">Ministerio de Trabajo y Previsión Social | Dirección de Sistemas de Información © 2024</p>
-        </div>
-    </footer>
 
     <script>
         function openModal(title, desc) {
@@ -581,13 +502,13 @@
             if (tipo === 'procedimientos') {
                 listProc.classList.remove('hidden');
                 listForm.classList.add('hidden');
-                btnProc.className = "bg-mintrab-blue text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-md transition-all";
-                btnForm.className = "bg-white text-mintrab-blue border border-mintrab-blue px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all";
+                btnProc.className = "bg-mintrab-blue text-white px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg transition-all";
+                btnForm.className = "bg-white text-mintrab-blue border border-mintrab-blue px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all";
             } else {
                 listProc.classList.add('hidden');
                 listForm.classList.remove('hidden');
-                btnForm.className = "bg-mintrab-blue text-white px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-md transition-all";
-                btnProc.className = "bg-white text-mintrab-blue border border-mintrab-blue px-6 py-2 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all";
+                btnForm.className = "bg-mintrab-blue text-white px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-lg transition-all";
+                btnProc.className = "bg-white text-mintrab-blue border border-mintrab-blue px-8 py-2.5 rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 transition-all";
             }
         }
         window.onclick = function(e) { if (e.target == document.getElementById('modal')) closeModal(); }
